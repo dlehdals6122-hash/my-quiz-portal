@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <!-- 모바일 화면 줌 방지 및 크기 고정 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>세계 국기 퀴즈</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
@@ -10,17 +11,19 @@
         body {
             font-family: 'Noto Sans KR', sans-serif;
             background-color: #4369C6;
+            /* 가로/세로 스크롤 원천 차단 */
+            overflow: hidden; 
         }
         * {
             -webkit-tap-highlight-color: transparent;
         }
     </style>
 </head>
-<!-- body의 높이를 100dvh로 고정하여 모바일 주소창 버그 원천 차단 -->
-<body class="text-slate-800 flex items-center justify-center p-0 sm:p-4 w-full" style="height: 100dvh;">
+<!-- h-[100dvh]와 w-full을 주어 모바일 화면 전체를 꽉 채우고 흔들리지 않게 고정 -->
+<body class="text-slate-800 flex items-center justify-center p-0 w-full h-[100dvh] bg-[#4369C6] sm:p-4">
 
     <!-- [퀴즈 시작 / 설정 모달창] -->
-    <div id="quiz-modal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm" style="height: 100dvh;">
+    <div id="quiz-modal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm h-[100dvh]">
         <div class="bg-white w-full max-w-[320px] sm:max-w-sm rounded-2xl shadow-2xl overflow-hidden flex flex-col">
             <div class="bg-[#4369C6] p-3 sm:p-4 flex justify-between items-center text-white">
                 <h3 class="font-bold text-base sm:text-lg">퀴즈 준비</h3>
@@ -30,10 +33,10 @@
                 <div class="text-center mb-4 sm:mb-5">
                     <div class="w-16 h-16 sm:w-20 sm:h-20 bg-indigo-50 rounded-full flex items-center justify-center text-4xl sm:text-5xl mx-auto mb-2 sm:mb-3 shadow-inner">🌍</div>
                     <h2 class="text-lg sm:text-xl font-extrabold text-slate-800">세계 국기 퀴즈</h2>
-                    <p class="text-slate-500 text-xs sm:text-sm mt-1">총 20문제가111 출제됩니다.</p>
+                    <p class="text-slate-500 text-xs sm:text-sm mt-1">총 20문제가1243 출제됩니다.</p>
                 </div>
 
-                <label class="bg-slate-50 border border-slate-200 rounded-xl p-3 sm:p-4 mb-5 flex items-center justify-between cursor-pointer select-none" style="-webkit-tap-highlight-color: transparent;">
+                <label class="bg-slate-50 border border-slate-200 rounded-xl p-3 sm:p-4 mb-5 flex items-center justify-between cursor-pointer select-none">
                     <div class="flex items-center space-x-2">
                         <span class="text-lg sm:text-xl">⏱️</span>
                         <div>
@@ -43,13 +46,12 @@
                     </div>
                     
                     <div class="relative inline-flex items-center">
-                        <!-- 아이폰 강제 렌더링 버그 방지를 위해 opacity-0과 absolute 속성 적용 -->
                         <input type="checkbox" id="timer-toggle" class="opacity-0 absolute w-0 h-0 peer" onchange="toggleTimerState(this.checked)">
                         <div class="w-12 h-6 sm:w-14 sm:h-7 bg-slate-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 sm:after:h-6 sm:after:w-6 after:transition-all peer-checked:bg-[#4369C6]"></div>
                     </div>
                 </label>
 
-                <button onclick="startQuiz()" class="w-full bg-[#4369c6] hover:bg-violet-600 text-white font-extrabold py-3.5 sm:py-4 rounded-xl transition-all shadow-lg hover:shadow-violet-500/20 active:scale-98 text-base sm:text-lg">
+                <button onclick="startQuiz()" class="w-full bg-[#4369c6] hover:bg-violet-600 text-white font-extrabold py-3.5 sm:py-4 rounded-xl transition-all shadow-lg text-base sm:text-lg">
                     게임 시작하기
                 </button>
             </div>
@@ -57,9 +59,9 @@
     </div>
 
     <!-- [게임 화면] -->
-    <!-- h-full을 적용하여 body의 100dvh에 딱 맞게 꽉 차도록 수정 -->
-    <div id="game-screen" class="hidden w-full h-full sm:h-auto max-w-md flex-col items-center justify-center p-4 sm:p-0">
-        <div class="w-full bg-[#4369C6] flex-1 sm:flex-none sm:min-h-[600px] rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden relative flex flex-col p-4 sm:p-6 border border-white/10">
+    <!-- 불필요한 패딩(p-4)을 제거하여 화면 가로폭이 넘치지 않게 w-full h-full 고정 -->
+    <div id="game-screen" class="hidden w-full h-full sm:h-auto sm:max-w-md flex-col items-center justify-center p-0">
+        <div class="w-full h-full sm:h-auto bg-[#4369C6] flex-1 sm:flex-none sm:min-h-[600px] sm:rounded-3xl sm:shadow-2xl overflow-hidden relative flex flex-col p-4 sm:p-6 border-white/10 sm:border">
             
             <!-- 상단 바 -->
             <div class="flex justify-between items-center mb-4 sm:mb-8 shrink-0">
@@ -76,20 +78,20 @@
                 </div>
             </div>
 
-            <!-- 중앙 이미지 영역 (플렉스 레이아웃 최적화) -->
-            <div class="flex-1 flex flex-col items-center justify-center mb-4 sm:mb-10 w-full relative min-h-0">
+            <!-- 중앙 이미지 영역 -->
+            <div class="flex-1 flex flex-col items-center justify-center mb-4 sm:mb-8 w-full relative min-h-0">
                 <div class="absolute inset-0 bg-blue-500/10 blur-2xl sm:blur-3xl rounded-full"></div>
                 <div class="w-full relative flex items-center justify-center z-10 h-full">
-                    <!-- 이미지가 너무 커져서 레이아웃을 밀어내는 현상 방지: max-h-[35vh], max-w-[80vw] -->
-                    <img id="quiz-image" src="" alt="국기 이미지" class="max-w-[80vw] max-h-[35vh] sm:max-w-full sm:max-h-full object-contain drop-shadow-xl sm:drop-shadow-2xl">
+                    <img id="quiz-image" src="" alt="국기 이미지" class="max-w-[85vw] max-h-[30vh] sm:max-w-full sm:max-h-[45vh] object-contain drop-shadow-xl sm:drop-shadow-2xl">
                 </div>
             </div>
             
             <!-- 하단 입력창 및 버튼 영역 -->
             <div class="w-full shrink-0 flex flex-col items-center justify-end pb-2 sm:pb-4 min-h-[80px]">
-                <div id="input-area" class="w-full flex space-x-2 sm:space-x-3 items-end">
+                <div id="input-area" class="w-full flex space-x-2 sm:space-x-3 items-center">
+                    <!-- min-w-0을 추가하여 입력창이 플렉스 컨테이너 밖으로 밀려나는 현상 원천 차단! -->
                     <input type="text" id="answer-input" placeholder="정답을 입력하세요" onkeydown="handleKeypress(event)"
-                            class="flex-1 px-3 py-3 sm:px-4 sm:py-4 bg-white rounded-xl text-center text-base sm:text-lg font-black text-slate-800 focus:outline-none shadow-lg focus:ring-4 focus:ring-blue-300">
+                            class="flex-1 min-w-0 h-12 sm:h-14 px-3 sm:px-4 bg-white rounded-xl text-center text-base sm:text-lg font-black text-slate-800 focus:outline-none shadow-lg focus:ring-4 focus:ring-blue-300">
                     <button onclick="checkAnswer()" class="bg-[#2C4682] hover:bg-violet-500 text-white font-bold h-12 w-12 sm:h-14 sm:w-14 rounded-xl transition-colors shadow-lg text-xl sm:text-2xl flex items-center justify-center shrink-0">
                         &gt;
                     </button>
@@ -97,8 +99,8 @@
                 
                 <div id="result-area" class="w-full hidden flex-col items-center justify-center space-y-2 sm:space-y-4">
                     <div id="result-status" class="text-lg sm:text-xl font-bold flex items-center justify-center space-x-2"></div>
-                    <div id="correct-answer-text" class="text-xl sm:text-3xl font-black text-white drop-shadow-md tracking-wider text-center break-keep"></div>
-                    <button id="next-button" onclick="moveToNext()" class="bg-[#4369c6] hover:bg-violet-500 text-white font-bold h-10 w-full sm:w-3/4 rounded-xl transition-colors shadow-lg text-lg sm:text-xl flex justify-center items-center mt-2 focus:ring-4 ring-violet-300 ring-opacity-50">
+                    <div id="correct-answer-text" class="text-xl sm:text-3xl font-black text-white drop-shadow-md tracking-wider text-center break-keep w-full overflow-hidden whitespace-normal px-2"></div>
+                    <button id="next-button" onclick="moveToNext()" class="bg-[#4369c6] hover:bg-violet-500 text-white font-bold h-12 sm:h-14 w-full sm:w-3/4 rounded-xl transition-colors shadow-lg text-lg sm:text-xl flex justify-center items-center mt-2 focus:ring-4 ring-violet-300 ring-opacity-50 shrink-0">
                         다음 문제로 &gt;
                     </button>
                 </div>
@@ -108,7 +110,7 @@
 
     <!-- [종료 화면] -->
     <div id="end-screen" class="hidden h-full w-full sm:h-auto max-w-md flex-col items-center justify-center p-4 text-white">
-        <div class="w-full bg-[#4369C6] rounded-3xl shadow-2xl flex flex-col items-center p-8 sm:p-10 border border-white/10 text-center">
+        <div class="w-full h-full sm:h-auto bg-[#4369C6] sm:rounded-3xl shadow-2xl flex flex-col items-center p-8 sm:p-10 sm:border border-white/10 text-center justify-center">
             <div class="text-6xl sm:text-7xl mb-4 sm:mb-6">🎉</div>
             <h2 class="text-2xl sm:text-3xl font-black mb-2 text-white">퀴즈 종료!</h2>
             <p class="text-sm sm:text-base text-gray-300 mb-6 sm:mb-8">모든 문제를 완료했습니다.</p>
