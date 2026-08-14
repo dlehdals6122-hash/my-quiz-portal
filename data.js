@@ -23,7 +23,7 @@ const quizDatabase = {
         { imageUrl: "https://flagcdn.com/w320/iq.png", answers: ["이라크"] },
         { imageUrl: "https://flagcdn.com/w320/sa.png", answers: ["사우디아라비아", "사우디"] },
         { imageUrl: "https://flagcdn.com/w320/ae.png", answers: ["아랍에미리트", "UAE"] },
-        { imageUrl: "https://flagcdn.com/w320/uz.png", answers: ["우즈베키스탄"] },
+        { imageUrl: "https://flagcdn.com/w320/uz.png", answers: ["우즈베키스탄", "우즈벡"] },
         { imageUrl: "https://flagcdn.com/w320/au.png", answers: ["호주", "오스트레일리아"] },
         { imageUrl: "https://flagcdn.com/w320/nz.png", answers: ["뉴질랜드"] },
 

@@ -32,19 +32,21 @@
                     <p class="text-slate-500 text-xs sm:text-sm mt-1">총 20문제가 출제됩니다.</p>
                 </div>
 
-                <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 sm:p-4 mb-5 flex items-center justify-between">
-                    <div class="flex items-center space-x-2">
-                        <span class="text-lg sm:text-xl">⏱️</span>
-                        <div>
-                            <div class="font-bold text-slate-800 text-xs sm:text-sm">타이머 설정</div>
-                            <div class="text-[11px] text-slate-500">문제당 제한시간 10초</div>
-                        </div>
-                    </div>
-                    <label class="relative inline-flex items-center cursor-pointer select-none">
-                        <input type="checkbox" id="timer-toggle" class="sr-only peer" onchange="toggleTimerState(this.checked)">
-                        <div class="w-12 h-6.5 sm:w-14 sm:h-7 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 sm:after:h-6 after:w-5 sm:after:w-6 after:transition-all peer-checked:bg-[#4369c6] shadow-inner"></div>
-                    </label>
-                </div>
+               <label class="bg-slate-50 border border-slate-200 rounded-xl p-3 sm:p-4 mb-5 flex items-center justify-between cursor-pointer select-none" style="-webkit-tap-highlight-color: transparent;">
+    <div class="flex items-center space-x-2">
+        <span class="text-lg sm:text-xl">⏱️</span>
+        <div>
+            <div class="font-bold text-slate-800 text-xs sm:text-sm">타이머 설정</div>
+            <div class="text-[11px] text-slate-500">문제당 제한시간 10초</div>
+        </div>
+    </div>
+    
+    <div class="relative inline-flex items-center">
+        <!-- 아이폰 강제 렌더링 버그 방지를 위해 opacity-0과 absolute 속성 적용 -->
+        <input type="checkbox" id="timer-toggle" class="opacity-0 absolute w-0 h-0 peer" onchange="toggleTimerState(this.checked)">
+        <div class="w-12 h-6 sm:w-14 sm:h-7 bg-slate-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 sm:after:h-6 sm:after:w-6 after:transition-all peer-checked:bg-[#4369C6]"></div>
+    </div>
+</label>
 
                 <button onclick="startQuiz()" class="w-full bg-[#4369c6] hover:bg-violet-600 text-white font-extrabold py-3.5 sm:py-4 rounded-xl transition-all shadow-lg hover:shadow-violet-500/20 active:scale-98 text-base sm:text-lg">
                     게임 시작하기
