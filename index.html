@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>종합 퀴즈 포털</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #4369C6;
+        }
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .header-bar {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            background-color: #4369C6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+        }
+        .menu-popup {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="text-slate-800 min-h-screen">
+
+    <div class="max-w-6xl mx-auto w-full px-4">
+
+        <header class="header-bar text-white">
+            <div class="text-xl cursor-pointer" onclick="location.reload()">🏠</div>
+            <button onclick="toggleMenu()" class="text-xl">⋮</button>
+        </header>
+
+        <div id="portal-screen" class="flex flex-col min-h-screen w-full max-w-[1400px] mx-auto pb-10">
+            <div class="px-3 sm:px-6 lg:px-8 mt-4 sm:mt-8">
+                
+                <!-- 검색창 영역 -->
+                <div class="max-w-2xl mx-auto mb-8 sm:mb-10">
+                    <div class="relative shadow-lg rounded-xl overflow-hidden">
+                        <input type="text" id="searchInput" placeholder="태그나 게임 검색 (예: 만화, 국기)" 
+                               class="w-full py-3 sm:py-4 pl-12 pr-4 text-slate-800 bg-white border-none focus:outline-none focus:ring-4 focus:ring-indigo-300/50 text-sm sm:text-base font-bold transition-all placeholder:text-slate-400 placeholder:font-normal">
+                        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg sm:text-xl">🔍</div>
+                    </div>
+                  
+                </div>
+
+                <!-- 퀴즈 카드 리스트 (window.open 적용) -->
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+                    
+                    <!-- 카드 1 (국기 퀴즈 -> 새 창 열기) -->
+                    <div onclick="window.open('flag_quiz.html', '_blank')" data-tags="국가 국기 상식 세계 지리" class="quiz-card bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:-translate-y-1 hover:shadow-2xl transition-all group flex flex-col">
+                        <div class="w-full aspect-[4/3] bg-indigo-50 relative">
+                            <img src="https://flagcdn.com/w320/kr.png" class="w-full h-full object-cover p-4 sm:p-8 drop-shadow-xl" alt="국기 퀴즈">
+                            <div class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-[#3b82f6] text-white text-[9px] sm:text-[11px] font-black px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm tracking-wider">
+                                주관식
+                            </div>
+                            <div class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 text-white text-[10px] sm:text-xs font-bold flex items-center drop-shadow-md bg-black/40 px-1.5 py-0.5 rounded">
+                                ▶ <span class="player-count">0</span>명 플레이중
+                            </div>
+                        </div>
+                        <div class="p-3 sm:p-5 flex-1 flex flex-col bg-white">
+                            <h2 class="text-sm sm:text-lg font-extrabold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors truncate">국기 보고 나라 맞히기</h2>
+                            <p class="text-[10px] sm:text-xs text-slate-500 line-clamp-2 leading-relaxed">국기만 보고, 어떤 나라의 국기인지 맞히는 퀴즈입니다.</p>
+                           
+                        </div>
+                    </div>
+
+                    <!-- 카드 2 (포켓몬 퀴즈) -->
+                    <div onclick="window.open('flag_quiz.html', '_blank')" data-tags="만화 캐릭터 포켓몬 애니 닌텐도" class="quiz-card bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:-translate-y-1 hover:shadow-2xl transition-all group flex flex-col">
+                        <div class="w-full aspect-[4/3] bg-yellow-100 relative overflow-hidden">
+                            <img src="https://placehold.co/400x300/fde047/a16207?text=Pokemon" class="w-full h-full object-cover" alt="포켓몬">
+                            <div class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-[#3b82f6] text-white text-[9px] sm:text-[11px] font-black px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm tracking-wider">주관식</div>
+                            <div class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 text-white text-[10px] sm:text-xs font-bold drop-shadow-md bg-black/40 px-1.5 py-0.5 rounded"> ▶ <span class="player-count">0</span>명 플레이중</div>
+                        </div>
+                        <div class="p-3 sm:p-5 flex-1 bg-white flex flex-col">
+                            <h2 class="text-sm sm:text-lg font-extrabold text-slate-900 mb-1 truncate">포켓몬 이름 맞추기</h2>
+                            <p class="text-[10px] sm:text-xs text-slate-500 line-clamp-2 leading-relaxed">사진을 보고 포켓몬스터 이름을 맞춘다. (준비 중)</p>
+                            
+                        </div>
+                    </div>
+
+                    <!-- 카드 3 (애니 퀴즈) -->
+                    <div onclick="window.open('flag_quiz.html', '_blank')" data-tags="만화 애니메이션 일본 오타쿠 초성" class="quiz-card bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:-translate-y-1 hover:shadow-2xl transition-all group flex flex-col">
+                        <div class="w-full aspect-[4/3] bg-blue-100 relative">
+                            <img src="https://placehold.co/400x300/bfdbfe/1e3a8a?text=Anime" class="w-full h-full object-cover" alt="애니메이션">
+                            <div class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-[#3b82f6] text-white text-[9px] sm:text-[11px] font-black px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm tracking-wider">주관식</div>
+                            <div class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 text-white text-[10px] sm:text-xs font-bold drop-shadow-md bg-black/40 px-1.5 py-0.5 rounded"> ▶ <span class="player-count">0</span>명 플레이중</div>
+                        </div>
+                        <div class="p-3 sm:p-5 flex-1 bg-white flex flex-col">
+                            <h2 class="text-sm sm:text-lg font-extrabold text-slate-900 mb-1 truncate">애니 제목 맞추기</h2>
+                            <p class="text-[10px] sm:text-xs text-slate-500 line-clamp-2 leading-relaxed">초성보고 애니메이션 제목을 맞혀보세요. (준비 중)</p>
+                            
+                        </div>
+                    </div>
+
+                    <!-- 카드 4 (넌센스 퀴즈) -->
+                    <div onclick="window.open('flag_quiz.html', '_blank')" data-tags="넌센스 개그 유머 상식 킬링타임" class="quiz-card bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:-translate-y-1 hover:shadow-2xl transition-all group flex flex-col">
+                        <div class="w-full aspect-[4/3] bg-pink-100 relative">
+                            <img src="https://placehold.co/400x300/fbcfe8/831843?text=Nonsense" class="w-full h-full object-cover" alt="넌센스">
+                            <div class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-[#3b82f6] text-white text-[9px] sm:text-[11px] font-black px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm tracking-wider">주관식</div>
+                            <div class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 text-white text-[10px] sm:text-xs font-bold drop-shadow-md bg-black/40 px-1.5 py-0.5 rounded"> ▶ <span class="player-count">0</span>명 플레이중</div>
+                        </div>
+                        <div class="p-3 sm:p-5 flex-1 bg-white flex flex-col">
+                            <h2 class="text-sm sm:text-lg font-extrabold text-slate-900 mb-1 truncate">넌센스 능력 테스트</h2>
+                            <p class="text-[10px] sm:text-xs text-slate-500 line-clamp-2 leading-relaxed">당신의 센스를 테스트합니다. (준비 중)</p>
+                         
+                        </div>
+                    </div>
+
+                    <!-- 결과 없음 메시지 -->
+                    <div id="no-result" class="hidden col-span-full text-center text-white py-12">
+                        <div class="text-4xl mb-3">🥲</div>
+                        <h3 class="text-lg sm:text-xl font-bold">검색 결과가 없습니다.</h3>
+                        <p class="text-indigo-200 mt-2 text-sm">다른 태그나 검색어를 입력해 보세요!</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const counts = document.querySelectorAll('.player-count');
+                counts.forEach(el => {
+                    const randomNum = Math.floor(Math.random() * (30 - 10 + 1)) + 10;
+                    el.innerText = randomNum;
+                });
+            });
+
+            function toggleMenu() {
+                const menu = document.getElementById('menu-popup');
+                menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+            }
+
+            const searchInput = document.getElementById('searchInput');
+            const cards = document.querySelectorAll('.quiz-card');
+            const noResultMsg = document.getElementById('no-result');
+
+            searchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                let visibleCount = 0;
+
+                cards.forEach(card => {
+                    const tags = card.getAttribute('data-tags').toLowerCase();
+                    const title = card.querySelector('h2').innerText.toLowerCase();
+
+                    if (tags.includes(searchTerm) || title.includes(searchTerm)) {
+                        card.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                if (visibleCount === 0) {
+                    noResultMsg.classList.remove('hidden');
+                } else {
+                    noResultMsg.classList.add('hidden');
+                }
+            });
+        </script>
+
+        <div id="menu-popup" class="menu-popup">
+            <div class="bg-white w-64 p-6 rounded-xl shadow-xl">
+                <button onclick="toggleMenu()" class="text-2xl mb-4 w-full text-right">&times;</button>
+                <ul class="space-y-4 font-bold text-lg text-center">
+                    <li class="cursor-pointer hover:text-[#4369C6]">공지사항</li>
+                    <li class="cursor-pointer hover:text-[#4369C6]">건의사항</li>
+                    <li class="cursor-pointer hover:text-[#4369C6]">약관</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
