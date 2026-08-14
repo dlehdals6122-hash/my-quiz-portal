@@ -86,23 +86,26 @@
             </div>
             
             <!-- 하단 입력창 및 버튼 영역 -->
-            <div class="w-full shrink-0 flex flex-col items-center justify-end pb-2 sm:pb-4 min-h-[80px]">
-                <div id="input-area" class="w-full flex space-x-2 sm:space-x-3 items-end">
-                    <input type="text" id="answer-input" placeholder="정답을 입력하세요" onkeydown="handleKeypress(event)"
-                            class="flex-1 px-3 py-3 sm:px-4 sm:py-4 bg-white rounded-xl text-center text-base sm:text-lg font-black text-slate-800 focus:outline-none shadow-lg focus:ring-4 focus:ring-blue-300">
-                    <button onclick="checkAnswer()" class="bg-[#2C4682] hover:bg-violet-500 text-white font-bold h-12 w-12 sm:h-14 sm:w-14 rounded-xl transition-colors shadow-lg text-xl sm:text-2xl flex items-center justify-center shrink-0">
-                        &gt;
-                    </button>
-                </div>
-                
-                <div id="result-area" class="w-full hidden flex-col items-center justify-center space-y-2 sm:space-y-4">
-                    <div id="result-status" class="text-lg sm:text-xl font-bold flex items-center justify-center space-x-2"></div>
-                    <div id="correct-answer-text" class="text-xl sm:text-3xl font-black text-white drop-shadow-md tracking-wider text-center break-keep"></div>
-                    <button id="next-button" onclick="moveToNext()" class="bg-[#4369c6] hover:bg-violet-500 text-white font-bold h-10 w-full sm:w-3/4 rounded-xl transition-colors shadow-lg text-lg sm:text-xl flex justify-center items-center mt-2 focus:ring-4 ring-violet-300 ring-opacity-50">
-                        다음 문제로 &gt;
-                    </button>
-                </div>
-            </div>
+<div class="w-full shrink-0 flex flex-col items-center justify-end pb-4 sm:pb-6 min-h-[80px]">
+    <div id="input-area" class="w-full flex space-x-2 sm:space-x-3 items-center">
+        <!-- 입력칸: 버튼과 동일하게 높이를 h-12 (모바일), sm:h-14 (PC)로 강제 고정 -->
+        <input type="text" id="answer-input" placeholder="정답을 입력하세요" onkeydown="handleKeypress(event)"
+                class="flex-1 h-12 sm:h-14 px-4 bg-white rounded-xl text-center text-base sm:text-lg font-black text-slate-800 focus:outline-none shadow-lg focus:ring-4 focus:ring-blue-300">
+        <!-- 버튼 -->
+        <button onclick="checkAnswer()" class="bg-[#2C4682] hover:bg-violet-500 text-white font-bold h-12 w-12 sm:h-14 sm:w-14 rounded-xl transition-colors shadow-lg text-xl sm:text-2xl flex items-center justify-center shrink-0">
+            &gt;
+        </button>
+    </div>
+    
+    <div id="result-area" class="w-full hidden flex-col items-center justify-center space-y-2 sm:space-y-4">
+        <div id="result-status" class="text-lg sm:text-xl font-bold flex items-center justify-center space-x-2"></div>
+        <div id="correct-answer-text" class="text-xl sm:text-3xl font-black text-white drop-shadow-md tracking-wider text-center break-keep"></div>
+        <!-- 다음 문제 버튼도 동일한 높이로 맞춤 -->
+        <button id="next-button" onclick="moveToNext()" class="bg-[#4369c6] hover:bg-violet-500 text-white font-bold h-12 sm:h-14 w-full sm:w-3/4 rounded-xl transition-colors shadow-lg text-lg sm:text-xl flex justify-center items-center mt-2 focus:ring-4 ring-violet-300 ring-opacity-50">
+            다음 문제로 &gt;
+        </button>
+    </div>
+</div>
         </div>
     </div>
 
