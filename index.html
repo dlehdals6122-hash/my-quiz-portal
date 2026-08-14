@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
+<meta name="google-site-verification" content="ZQAZXgOw1PxBHx24upfjLL8rC020ncWa6LStxj-z2tI" />
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>종합 퀴즈 포털</title>
+    <!-- ⬇️ 검색엔진 최적화(SEO)를 위한 메타태그 -->
+    <title>퀴즈팡 - 세상의 모든 퀴즈! (나라 퀴즈, 넌센스)</title>
+    <meta name="description" content="나라 국기 맞추기, 포켓몬, 애니메이션, 넌센스 등 다양한 퀴즈를 무료로 즐길 수 있는 종합 퀴즈 포털 퀴즈팡(Quizpang)입니다.">
+    <meta name="keywords" content="퀴즈, 나라퀴즈, 국기퀴즈, 넌센스퀴즈, 퀴즈게임, 킬링타임">
+    
+    <!-- ⬇️ 카카오톡이나 SNS에 링크 공유 시 예쁘게 뜨게 하는 설정 (Open Graph) -->
+    <meta property="og:title" content="퀴즈팡 - 종합 퀴즈 포털">
+    <meta property="og:description" content="나라 국기 퀴즈, 넌센스 등 다양한 퀴즈에 도전해 보세요!">
+    <meta property="og:image" content="https://flagcdn.com/w320/kr.png"> <!-- 나중에 예쁜 로고 이미지 주소로 바꾸세요 -->
+    <meta property="og:url" content="https://quizpang.net">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -44,26 +56,14 @@
     </style>
 </head>
 <body class="text-slate-800 min-h-screen">
-
+<div id="header-container"></div>
     <div class="max-w-6xl mx-auto w-full px-4">
 
-        <header class="header-bar text-white">
-            <div class="text-xl cursor-pointer" onclick="location.reload()">🏠</div>
-            <button onclick="toggleMenu()" class="text-xl">⋮</button>
-        </header>
-
+        
         <div id="portal-screen" class="flex flex-col min-h-screen w-full max-w-[1400px] mx-auto pb-10">
             <div class="px-3 sm:px-6 lg:px-8 mt-4 sm:mt-8">
                 
-                <!-- 검색창 영역 -->
-                <div class="max-w-2xl mx-auto mb-8 sm:mb-10">
-                    <div class="relative shadow-lg rounded-xl overflow-hidden">
-                        <input type="text" id="searchInput" placeholder="태그나 게임 검색 (예: 만화, 국기)" 
-                               class="w-full py-3 sm:py-4 pl-12 pr-4 text-slate-800 bg-white border-none focus:outline-none focus:ring-4 focus:ring-indigo-300/50 text-sm sm:text-base font-bold transition-all placeholder:text-slate-400 placeholder:font-normal">
-                        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg sm:text-xl">🔍</div>
-                    </div>
-                  
-                </div>
+              
 
                 <!-- 퀴즈 카드 리스트 (window.open 적용) -->
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
@@ -139,60 +139,25 @@
             </div>
         </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const counts = document.querySelectorAll('.player-count');
-                counts.forEach(el => {
-                    const randomNum = Math.floor(Math.random() * (30 - 10 + 1)) + 10;
-                    el.innerText = randomNum;
-                });
+       <script>
+        // 플레이어 수 랜덤 생성 로직만 유지
+        document.addEventListener('DOMContentLoaded', () => {
+            const counts = document.querySelectorAll('.player-count');
+            counts.forEach(el => {
+                const randomNum = Math.floor(Math.random() * (30 - 10 + 1)) + 10;
+                el.innerText = randomNum;
             });
+        });
+    </script>
 
-            function toggleMenu() {
-                const menu = document.getElementById('menu-popup');
-                menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-            }
+    <!-- ⬇️ 공통 상단바 및 검색 엔진 연결 -->
+    <script src="header.js"></script>
+</body>
+</html>
 
-            const searchInput = document.getElementById('searchInput');
-            const cards = document.querySelectorAll('.quiz-card');
-            const noResultMsg = document.getElementById('no-result');
-
-            searchInput.addEventListener('input', function(e) {
-                const searchTerm = e.target.value.toLowerCase().trim();
-                let visibleCount = 0;
-
-                cards.forEach(card => {
-                    const tags = card.getAttribute('data-tags').toLowerCase();
-                    const title = card.querySelector('h2').innerText.toLowerCase();
-
-                    if (tags.includes(searchTerm) || title.includes(searchTerm)) {
-                        card.style.display = 'flex';
-                        visibleCount++;
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-
-                if (visibleCount === 0) {
-                    noResultMsg.classList.remove('hidden');
-                } else {
-                    noResultMsg.classList.add('hidden');
-                }
-            });
-        </script>
-
-        <div id="menu-popup" class="menu-popup">
-            <div class="bg-white w-64 p-6 rounded-xl shadow-xl">
-                <button onclick="toggleMenu()" class="text-2xl mb-4 w-full text-right">&times;</button>
-                <ul class="space-y-4 font-bold text-lg text-center">
-                    <li class="cursor-pointer hover:text-[#4369C6]">공지사항</li>
-                    <li class="cursor-pointer hover:text-[#4369C6]">건의사항</li>
-                    <li class="cursor-pointer hover:text-[#4369C6]">약관</li>
-                </ul>
-            </div>
-        </div>
+     
 
     </div>
-
+<script src="header.js"></script>
 </body>
 </html>
