@@ -5,7 +5,7 @@ const quizDatabase = {
     flags: [
         // 🌏 아시아 & 오세아니아 (25개국)
         { imageUrl: "https://flagcdn.com/w320/kr.png", answers: ["한국", "대한민국", "남한"] },
-        { imageUrl: "https://flagcdn.com/w320/kp.png", answers: ["북한", "조선민주주의인민공화국"] },
+        { imageUrl: "https://flagcdn.com/w320/kp.png", answers: ["북한"] },
         { imageUrl: "https://flagcdn.com/w320/jp.png", answers: ["일본"] },
         { imageUrl: "https://flagcdn.com/w320/cn.png", answers: ["중국"] },
         { imageUrl: "https://flagcdn.com/w320/tw.png", answers: ["대만", "타이완"] },
