@@ -90,8 +90,7 @@ function preloadImages() {
     if (typeof CURRENT_QUIZ_DATA === 'undefined') return;
     CURRENT_QUIZ_DATA.forEach(item => {
         const img = new Image();
-        // data.js에 적힌 주소 체계(url 또는 image)에 맞게 확인
-        img.src = item.url || item.image; 
+        img.src = item.imageUrl; // 👈 여기를 imageUrl로 맞춰주시면 완벽합니다!
     });
 }
 
