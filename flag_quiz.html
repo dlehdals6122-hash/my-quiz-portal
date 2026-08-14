@@ -56,9 +56,8 @@
         </div>
     </div>
 
-    <!-- [게임 화면] -->
-    <div id="game-screen" class="hidden w-full flex-col items-center justify-center p-0 m-0" style="height: 100dvh;">
-        <!-- max-w-md와 고정 패딩을 제거하고, 모바일 화면에 꽉 차게 w-full h-full 부여 -->
+<!-- [게임 화면] -->
+    <div id="game-screen" class="hidden w-full flex-col items-center justify-between p-0 m-0" style="height: 100dvh;">
         <div class="w-full h-full bg-[#4369C6] flex flex-col justify-between p-4 sm:p-6 overflow-hidden">
             
             <!-- 상단 바 -->
@@ -76,17 +75,17 @@
                 </div>
             </div>
 
-            <!-- 중앙 이미지 영역 (화면 중앙에 정확히 안착) -->
+            <!-- 중앙 이미지 영역 (이미지 높이를 살짝 줄여서 여유 공간 확보) -->
             <div class="flex-1 flex flex-col items-center justify-center relative my-auto">
-                <div class="absolute inset-0 bg-blue-500/10 blur-3xl rounded-full m-auto w-48 h-48"></div>
+                <div class="absolute inset-0 bg-blue-500/10 blur-3xl rounded-full m-auto w-40 h-40"></div>
                 <div class="w-full relative flex items-center justify-center z-10">
-                    <!-- 이미지가 화면 너비를 절대 넘지 않게 max-w-[85vw], max-h-[38vh]로 제한 -->
-                    <img id="quiz-image" src="" alt="국기 이미지" class="max-w-[85vw] max-h-[38vh] sm:max-w-md sm:max-h-[45vh] object-contain drop-shadow-2xl">
+                    <img id="quiz-image" src="" alt="국기 이미지" class="max-w-[80vw] max-h-[30vh] sm:max-w-md sm:max-h-[45vh] object-contain drop-shadow-2xl">
                 </div>
             </div>
             
-            <!-- 하단 입력창 및 버튼 영역 (오른쪽 잘림 방지를 위해 w-full 및 박스 패딩 최적화) -->
-            <div class="w-full shrink-0 flex flex-col items-center justify-end pb-4 sm:pb-6">
+            <!-- 하단 입력창 및 버튼 영역 (정답 확인 후 결과창이 떠도 깨지지 않도록 고정 프레임 적용) -->
+            <div class="w-full shrink-0 flex flex-col items-center justify-end pb-2 sm:pb-6">
+                <!-- 입력창 영역 -->
                 <div id="input-area" class="w-full flex space-x-2 sm:space-x-3 items-center">
                     <input type="text" id="answer-input" placeholder="정답을 입력하세요" onkeydown="handleKeypress(event)"
                             class="flex-1 h-12 sm:h-14 px-4 bg-white rounded-xl text-center text-base sm:text-lg font-black text-slate-800 focus:outline-none shadow-lg focus:ring-4 focus:ring-blue-300">
@@ -95,10 +94,11 @@
                     </button>
                 </div>
                 
-                <div id="result-area" class="w-full hidden flex-col items-center justify-center space-y-2 sm:space-y-4">
-                    <div id="result-status" class="text-lg sm:text-xl font-bold flex items-center justify-center space-x-2"></div>
-                    <div id="correct-answer-text" class="text-xl sm:text-3xl font-black text-white drop-shadow-md tracking-wider text-center break-keep"></div>
-                    <button id="next-button" onclick="moveToNext()" class="bg-[#4369c6] hover:bg-violet-500 text-white font-bold h-12 sm:h-14 w-full rounded-xl transition-colors shadow-lg text-lg sm:text-xl flex justify-center items-center mt-2 focus:ring-4 ring-violet-300 ring-opacity-50">
+                <!-- 결과 표시 영역 (O/X 및 정답 텍스트) -->
+                <div id="result-area" class="w-full hidden flex-col items-center justify-center space-y-1 sm:space-y-3 py-1">
+                    <div id="result-status" class="text-base sm:text-xl font-bold flex items-center justify-center space-x-2"></div>
+                    <div id="correct-answer-text" class="text-lg sm:text-3xl font-black text-white drop-shadow-md tracking-wider text-center break-keep"></div>
+                    <button id="next-button" onclick="moveToNext()" class="bg-[#4369c6] hover:bg-violet-500 text-white font-bold h-12 sm:h-14 w-full rounded-xl transition-colors shadow-lg text-lg sm:text-xl flex justify-center items-center mt-1 focus:ring-4 ring-violet-300 ring-opacity-50">
                         다음 문제로 &gt;
                     </button>
                 </div>
