@@ -57,12 +57,12 @@
     </div>
 
     <!-- [게임 화면] -->
-    <!-- h-full을 적용하여 body의 100dvh에 딱 맞게 꽉 차도록 수정 -->
-    <div id="game-screen" class="hidden w-full h-full sm:h-auto max-w-md flex-col items-center justify-center p-4 sm:p-0">
-        <div class="w-full bg-[#4369C6] flex-1 sm:flex-none sm:min-h-[600px] rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden relative flex flex-col p-4 sm:p-6 border border-white/10">
+    <div id="game-screen" class="hidden w-full flex-col items-center justify-center p-0 m-0" style="height: 100dvh;">
+        <!-- max-w-md와 고정 패딩을 제거하고, 모바일 화면에 꽉 차게 w-full h-full 부여 -->
+        <div class="w-full h-full bg-[#4369C6] flex flex-col justify-between p-4 sm:p-6 overflow-hidden">
             
             <!-- 상단 바 -->
-            <div class="flex justify-between items-center mb-4 sm:mb-8 shrink-0">
+            <div class="flex justify-between items-center shrink-0">
                 <button onclick="location.href='index.html'" class="text-gray-300 hover:text-white font-bold px-2 py-1 rounded-lg hover:bg-white/10 transition-colors text-xs sm:text-sm flex items-center gap-1">
                     ← 메인으로
                 </button>
@@ -76,36 +76,33 @@
                 </div>
             </div>
 
-            <!-- 중앙 이미지 영역 (플렉스 레이아웃 최적화) -->
-            <div class="flex-1 flex flex-col items-center justify-center mb-4 sm:mb-10 w-full relative min-h-0">
-                <div class="absolute inset-0 bg-blue-500/10 blur-2xl sm:blur-3xl rounded-full"></div>
-                <div class="w-full relative flex items-center justify-center z-10 h-full">
-                    <!-- 이미지가 너무 커져서 레이아웃을 밀어내는 현상 방지: max-h-[35vh], max-w-[80vw] -->
-                    <img id="quiz-image" src="" alt="국기 이미지" class="max-w-[80vw] max-h-[35vh] sm:max-w-full sm:max-h-full object-contain drop-shadow-xl sm:drop-shadow-2xl">
+            <!-- 중앙 이미지 영역 (화면 중앙에 정확히 안착) -->
+            <div class="flex-1 flex flex-col items-center justify-center relative my-auto">
+                <div class="absolute inset-0 bg-blue-500/10 blur-3xl rounded-full m-auto w-48 h-48"></div>
+                <div class="w-full relative flex items-center justify-center z-10">
+                    <!-- 이미지가 화면 너비를 절대 넘지 않게 max-w-[85vw], max-h-[38vh]로 제한 -->
+                    <img id="quiz-image" src="" alt="국기 이미지" class="max-w-[85vw] max-h-[38vh] sm:max-w-md sm:max-h-[45vh] object-contain drop-shadow-2xl">
                 </div>
             </div>
             
-            <!-- 하단 입력창 및 버튼 영역 -->
-<div class="w-full shrink-0 flex flex-col items-center justify-end pb-4 sm:pb-6 min-h-[80px]">
-    <div id="input-area" class="w-full flex space-x-2 sm:space-x-3 items-center">
-        <!-- 입력칸: 버튼과 동일하게 높이를 h-12 (모바일), sm:h-14 (PC)로 강제 고정 -->
-        <input type="text" id="answer-input" placeholder="정답을 입력하세요" onkeydown="handleKeypress(event)"
-                class="flex-1 h-12 sm:h-14 px-4 bg-white rounded-xl text-center text-base sm:text-lg font-black text-slate-800 focus:outline-none shadow-lg focus:ring-4 focus:ring-blue-300">
-        <!-- 버튼 -->
-        <button onclick="checkAnswer()" class="bg-[#2C4682] hover:bg-violet-500 text-white font-bold h-12 w-12 sm:h-14 sm:w-14 rounded-xl transition-colors shadow-lg text-xl sm:text-2xl flex items-center justify-center shrink-0">
-            &gt;
-        </button>
-    </div>
-    
-    <div id="result-area" class="w-full hidden flex-col items-center justify-center space-y-2 sm:space-y-4">
-        <div id="result-status" class="text-lg sm:text-xl font-bold flex items-center justify-center space-x-2"></div>
-        <div id="correct-answer-text" class="text-xl sm:text-3xl font-black text-white drop-shadow-md tracking-wider text-center break-keep"></div>
-        <!-- 다음 문제 버튼도 동일한 높이로 맞춤 -->
-        <button id="next-button" onclick="moveToNext()" class="bg-[#4369c6] hover:bg-violet-500 text-white font-bold h-12 sm:h-14 w-full sm:w-3/4 rounded-xl transition-colors shadow-lg text-lg sm:text-xl flex justify-center items-center mt-2 focus:ring-4 ring-violet-300 ring-opacity-50">
-            다음 문제로 &gt;
-        </button>
-    </div>
-</div>
+            <!-- 하단 입력창 및 버튼 영역 (오른쪽 잘림 방지를 위해 w-full 및 박스 패딩 최적화) -->
+            <div class="w-full shrink-0 flex flex-col items-center justify-end pb-4 sm:pb-6">
+                <div id="input-area" class="w-full flex space-x-2 sm:space-x-3 items-center">
+                    <input type="text" id="answer-input" placeholder="정답을 입력하세요" onkeydown="handleKeypress(event)"
+                            class="flex-1 h-12 sm:h-14 px-4 bg-white rounded-xl text-center text-base sm:text-lg font-black text-slate-800 focus:outline-none shadow-lg focus:ring-4 focus:ring-blue-300">
+                    <button onclick="checkAnswer()" class="bg-[#2C4682] hover:bg-violet-500 text-white font-bold h-12 w-12 sm:h-14 sm:w-14 rounded-xl transition-colors shadow-lg text-xl sm:text-2xl flex items-center justify-center shrink-0">
+                        &gt;
+                    </button>
+                </div>
+                
+                <div id="result-area" class="w-full hidden flex-col items-center justify-center space-y-2 sm:space-y-4">
+                    <div id="result-status" class="text-lg sm:text-xl font-bold flex items-center justify-center space-x-2"></div>
+                    <div id="correct-answer-text" class="text-xl sm:text-3xl font-black text-white drop-shadow-md tracking-wider text-center break-keep"></div>
+                    <button id="next-button" onclick="moveToNext()" class="bg-[#4369c6] hover:bg-violet-500 text-white font-bold h-12 sm:h-14 w-full rounded-xl transition-colors shadow-lg text-lg sm:text-xl flex justify-center items-center mt-2 focus:ring-4 ring-violet-300 ring-opacity-50">
+                        다음 문제로 &gt;
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
