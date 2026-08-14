@@ -68,6 +68,7 @@ function shuffleArray(array) {
 function toggleTimerState(checked) { isTimerEnabled = checked; }
 
 function startQuiz() {
+    preloadImages();
     if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     if (audioCtx.state === 'suspended') audioCtx.resume();
     
@@ -82,6 +83,16 @@ function startQuiz() {
     document.getElementById('game-screen').classList.remove('hidden');
     document.getElementById('game-screen').classList.add('flex');
     updateQuestionUI();
+}
+
+// 게임 시작할 때 모든 이미지를 미리 메모리에 로드하는 함수
+function preloadImages() {
+    if (typeof CURRENT_QUIZ_DATA === 'undefined') return;
+    CURRENT_QUIZ_DATA.forEach(item => {
+        const img = new Image();
+        // data.js에 적힌 주소 체계(url 또는 image)에 맞게 확인
+        img.src = item.url || item.image; 
+    });
 }
 
 function startTimer() {
