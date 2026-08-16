@@ -2,6 +2,9 @@
 
 let audioCtx = null;
 
+// 페이지가 열리자마자 준비창 단계에서부터 미리 프리로딩 실행
+window.addEventListener('DOMContentLoaded', preloadImages);
+
 // common.js 파일의 엔터키 처리 함수 수정
 function handleKeypress(event) {
     if (event.key === 'Enter') {
@@ -106,12 +109,20 @@ function startQuiz() {
     updateQuestionUI();
 }
 
-// 게임 시작할 때 모든 이미지를 미리 메모리에 로드하는 함수
+// 게임 시작 전 모든 이미지(문제 및 정답 풀샷)를 미리 메모리에 로드하는 함수
 function preloadImages() {
     if (typeof CURRENT_QUIZ_DATA === 'undefined') return;
     CURRENT_QUIZ_DATA.forEach(item => {
-        const img = new Image();
-        img.src = item.imageUrl; // 👈 여기를 imageUrl로 맞춰주시면 완벽합니다!
+        // 1. 문제 이미지 미리 로드
+        if (item.imageUrl) {
+            const img = new Image();
+            img.src = item.imageUrl;
+        }
+        // 2. 정답/풀샷 이미지도 함께 미리 로드
+        if (item.resultImageUrl) {
+            const resultImg = new Image();
+            resultImg.src = item.resultImageUrl;
+        }
     });
 }
 
