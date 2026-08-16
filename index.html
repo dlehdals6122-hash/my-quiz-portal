@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-
-<meta name="google-site-verification" content="ZQAZXgOw1PxBHx24upfjLL8rC020ncWa6LStxj-z2tI" />
-<meta name="naver-site-verification" content="d3947df51763845bd80ea590097b20b504d13c7a" />
+    <meta name="google-site-verification" content="ZQAZXgOw1PxBHx24upfjLL8rC020ncWa6LStxj-z2tI" />
+    <meta name="naver-site-verification" content="d3947df51763845bd80ea590097b20b504d13c7a" />
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -34,7 +33,6 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-
         .header-bar {
             position: sticky;
             top: 0;
@@ -57,80 +55,78 @@
     </style>
 </head>
 <body class="text-slate-800 min-h-screen">
-<div id="header-container"></div>
+    
+    <!-- 동적 헤더가 들어갈 자리 -->
+    <div id="header-container"></div>
+    
     <div class="max-w-6xl mx-auto w-full px-4">
-
-        
         <div id="portal-screen" class="flex flex-col min-h-screen w-full max-w-[1400px] mx-auto pb-10">
-            <div class="px-3 sm:px-6 lg:px-8 mt-4 sm:mt-8">
+            <div class="px-3 sm:px-6 lg:px-8 mt-2 sm:mt-6">
                 
-              
+                <!-- ⬇️ 새롭게 추가된 중앙 검색창 -->
+                <div class="w-full max-w-lg mx-auto mb-6 sm:mb-10">
+                    <div class="relative flex items-center">
+                        <span class="absolute left-4 text-gray-400 text-lg">🔍</span>
+                        <input type="text" id="searchInput" placeholder="태그나 게임 검색 (예: 영화, 국기)" autocomplete="off"
+                               class="w-full py-3.5 sm:py-4 pl-12 pr-4 bg-white/95 focus:bg-white rounded-2xl text-base font-medium text-slate-800 shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-300/50 transition-all">
+                    </div>
+                </div>
+                <!-- ⬆️ 검색창 영역 끝 -->
 
-                <!-- 퀴즈 카드 리스트 (window.open 적용) -->
+                <!-- 퀴즈 카드 리스트 시작 -->
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
                     
-       <!-- 카드 1 (오디세이 인물 퀴즈) -->
-<div onclick="location.href='oddipic.html'" data-tags="영화 얼굴 오디세이 캐릭터" class="quiz-card bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:-translate-y-1 hover:shadow-2xl transition-all group flex flex-col">
-    <div class="w-full aspect-[4/3] bg-blue-100 relative overflow-hidden">
-        <!-- ⬇️ 해상도 및 비율 고정을 위해 object-cover 및 object-center 적용 -->
-        <img src="images/oddipics/oddithumb.png" class="w-full h-full object-cover object-center block" alt="오디세이 인물 퀴즈">
-        
-        <div class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-[#3b82f6] text-white text-[9px] sm:text-[11px] font-black px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm tracking-wider">주관식</div>
-        <div class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 text-white text-[10px] sm:text-xs font-bold drop-shadow-md bg-black/40 px-1.5 py-0.5 rounded"> ▶ 20문항</div>
-    </div>
-    <div class="p-3 sm:p-5 flex-1 bg-white flex flex-col">
-        <h2 class="text-sm sm:text-lg font-extrabold text-slate-900 mb-1 truncate">영화 '오디세이' 인물 퀴즈</h2>
-        <p class="text-[10px] sm:text-xs text-slate-500 line-clamp-2 leading-relaxed">진정 오디세이 덕후라면 인물쯤은 알아야겠죠?</p>
-    </div>
-</div>
+                    <!-- 카드 1 (오디세이 인물 퀴즈) -->
+                    <div onclick="location.href='oddipic.html'" data-tags="영화 얼굴 오디세이 캐릭터" class="quiz-card bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:-translate-y-1 hover:shadow-2xl transition-all group flex flex-col">
+                        <div class="w-full aspect-[4/3] bg-blue-100 relative overflow-hidden">
+                            <img src="images/oddipics/oddithumb.png" class="w-full h-full object-cover object-center block" alt="오디세이 인물 퀴즈">
+                            <div class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-[#3b82f6] text-white text-[9px] sm:text-[11px] font-black px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm tracking-wider">주관식</div>
+                            <div class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 text-white text-[10px] sm:text-xs font-bold drop-shadow-md bg-black/40 px-1.5 py-0.5 rounded"> ▶ 15문항</div>
+                        </div>
+                        <div class="p-3 sm:p-5 flex-1 bg-white flex flex-col">
+                            <h2 class="text-sm sm:text-lg font-extrabold text-slate-900 mb-1 truncate">영화 '오디세이' 인물 퀴즈</h2>
+                            <p class="text-[10px] sm:text-xs text-slate-500 line-clamp-2 leading-relaxed">진정 오디세이 덕후라면 인물쯤은 알아야겠죠?</p>
+                        </div>
+                    </div>
 
-                    <!-- 카드 1 (국기 퀴즈 -> 새 창 열기) -->
+                    <!-- 카드 2 (국기 보고 나라 맞히기) -->
                     <div onclick="window.open('flag_quiz.html', '_blank')" data-tags="국가 국기 상식 세계 지리" class="quiz-card bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:-translate-y-1 hover:shadow-2xl transition-all group flex flex-col">
                         <div class="w-full aspect-[4/3] bg-indigo-50 relative">
                             <img src="https://flagcdn.com/w320/kr.png" class="w-full h-full object-cover p-4 sm:p-8 drop-shadow-xl" alt="국기 퀴즈">
-                            <div class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-[#3b82f6] text-white text-[9px] sm:text-[11px] font-black px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm tracking-wider">
-                                주관식
-                            </div>
+                            <div class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-[#3b82f6] text-white text-[9px] sm:text-[11px] font-black px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm tracking-wider">주관식</div>
                             <div class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 text-white text-[10px] sm:text-xs font-bold drop-shadow-md bg-black/40 px-1.5 py-0.5 rounded"> ▶ 20문항</div>
-    
                         </div>
                         <div class="p-3 sm:p-5 flex-1 flex flex-col bg-white">
                             <h2 class="text-sm sm:text-lg font-extrabold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors truncate">국기 보고 나라 맞히기</h2>
                             <p class="text-[10px] sm:text-xs text-slate-500 line-clamp-2 leading-relaxed">국기만 보고, 어떤 나라의 국기인지 맞히는 퀴즈입니다.</p>
-                           
                         </div>
                     </div>
 
-                    <!-- 카드 2 (포켓몬 퀴즈) -->
+                    <!-- 카드 3 (온라인 게임 이름 퀴즈) -->
                     <div onclick="window.open('onlinegame.html', '_blank')" data-tags="게임 캐릭터" class="quiz-card bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:-translate-y-1 hover:shadow-2xl transition-all group flex flex-col">
                         <div class="w-full aspect-[4/3] bg-yellow-100 relative overflow-hidden">
                             <img src="images/onlinegame/onlinegametumbnail.png" class="w-full h-full object-cover" alt="온라인게임">
                             <div class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-[#3b82f6] text-white text-[9px] sm:text-[11px] font-black px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm tracking-wider">주관식</div>
-                           <div class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 text-white text-[10px] sm:text-xs font-bold drop-shadow-md bg-black/40 px-1.5 py-0.5 rounded"> ▶ 20문항</div>
-    </div>
+                            <div class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 text-white text-[10px] sm:text-xs font-bold drop-shadow-md bg-black/40 px-1.5 py-0.5 rounded"> ▶ 20문항</div>
+                        </div>
                         <div class="p-3 sm:p-5 flex-1 bg-white flex flex-col">
                             <h2 class="text-sm sm:text-lg font-extrabold text-slate-900 mb-1 truncate">온라인 게임 이름 퀴즈</h2>
                             <p class="text-[10px] sm:text-xs text-slate-500 line-clamp-2 leading-relaxed">스크린샷을 보고 게임 이름을 맞춰보세요.</p>
-                            
                         </div>
                     </div>
 
-                   <!-- 카드 3 (이목구비 퀴즈) -->
-<div onclick="location.href='eyes.html'" data-tags="연예인 얼굴 이목구비 아이돌 배우" class="quiz-card bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:-translate-y-1 hover:shadow-2xl transition-all group flex flex-col">
-    <div class="w-full aspect-[4/3] bg-blue-100 relative overflow-hidden">
-        <!-- ⬇️ 해상도 및 비율 고정을 위해 object-cover 및 object-center 적용 -->
-        <img src="images/eyes/jyy1.png" class="w-full h-full object-cover object-center block" alt="연예인 이목구비 퀴즈">
-        
-        <div class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-[#3b82f6] text-white text-[9px] sm:text-[11px] font-black px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm tracking-wider">주관식</div>
-        <div class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 text-white text-[10px] sm:text-xs font-bold drop-shadow-md bg-black/40 px-1.5 py-0.5 rounded"> ▶ 20문항</div>
-    </div>
-    <div class="p-3 sm:p-5 flex-1 bg-white flex flex-col">
-        <h2 class="text-sm sm:text-lg font-extrabold text-slate-900 mb-1 truncate">연예인 이목구비 퀴즈</h2>
-        <p class="text-[10px] sm:text-xs text-slate-500 line-clamp-2 leading-relaxed">눈, 코, 입만 보고 누군지 맞춰보세요!</p>
-    </div>
-</div>
-
-                
+                    <!-- 카드 4 (연예인 이목구비 퀴즈) -->
+                    <div onclick="location.href='eyes.html'" data-tags="연예인 얼굴 이목구비 아이돌 배우" class="quiz-card bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:-translate-y-1 hover:shadow-2xl transition-all group flex flex-col">
+                        <div class="w-full aspect-[4/3] bg-blue-100 relative overflow-hidden">
+                            <img src="images/eyes/jyy1.png" class="w-full h-full object-cover object-center block" alt="연예인 이목구비 퀴즈">
+                            <div class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-[#3b82f6] text-white text-[9px] sm:text-[11px] font-black px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-sm tracking-wider">주관식</div>
+                            <div class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 text-white text-[10px] sm:text-xs font-bold drop-shadow-md bg-black/40 px-1.5 py-0.5 rounded"> ▶ 20문항</div>
+                        </div>
+                        <div class="p-3 sm:p-5 flex-1 bg-white flex flex-col">
+                            <h2 class="text-sm sm:text-lg font-extrabold text-slate-900 mb-1 truncate">연예인 이목구비 퀴즈</h2>
+                            <p class="text-[10px] sm:text-xs text-slate-500 line-clamp-2 leading-relaxed">눈, 코, 입만 보고 누군지 맞춰보세요!</p>
+                        </div>
+                    </div>
 
                     <!-- 결과 없음 메시지 -->
                     <div id="no-result" class="hidden col-span-full text-center text-white py-12">
@@ -142,9 +138,10 @@
                 </div>
             </div>
         </div>
+    </div>
 
-       <script>
-        // 플레이어 수 랜덤 생성 로직만 유지
+    <script>
+        // 플레이어 수 랜덤 생성 로직
         document.addEventListener('DOMContentLoaded', () => {
             const counts = document.querySelectorAll('.player-count');
             counts.forEach(el => {
@@ -154,14 +151,7 @@
         });
     </script>
 
-    <!-- ⬇️ 공통 상단바 및 검색 엔진 연결 -->
+    <!-- ⬇️ 공통 상단바 및 검색 엔진 연결 (중복 제거 완료) -->
     <script src="header.js"></script>
-</body>
-</html>
-
-     
-
-    </div>
-<script src="header.js"></script>
 </body>
 </html>

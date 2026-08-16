@@ -100,31 +100,24 @@ const quizDatabase = {
         { answers: ["팰월드", "펠월드"], imageUrl: "images/onlinegame/palworld.png" }
     ], // 👈 쉼표(,) 추가
 
-     // 온라인 게임 이름 맞히기 데이터
+     // 오디세우스 인물 퀴즈
     oddipics: [
-        { answers: ["메이플스토리", "메이플"], imageUrl: "images/onlinegame/maplestory.png" },
-        { answers: ["카트라이더", "카트"], imageUrl: "images/onlinegame/kart.png" },
-        { answers: ["리그오브레전드", "리오레", "롤"], imageUrl: "images/onlinegame/lol.png" },
-        { answers: ["크레이지아케이드", "크아"], imageUrl: "images/onlinegame/ca.png" },
-        { answers: ["바람의나라", "바람"], imageUrl: "images/onlinegame/baram.png" },
-        { answers: ["스톤에이지", "스톤"], imageUrl: "images/onlinegame/stoneage.png" },
-        { answers: ["배틀그라운드", "배그"], imageUrl: "images/onlinegame/battleground.png" },
-        { answers: ["오버워치", "옵치"], imageUrl: "images/onlinegame/overwatch.png" },
-        { answers: ["던전앤파이터", "던파"], imageUrl: "images/onlinegame/dnf.png" },
-        { answers: ["서든어택", "서든"], imageUrl: "images/onlinegame/suddenattack.png" },
-        { answers: ["마비노기", "마비"], imageUrl: "images/onlinegame/mabinogi.png" },
-        { answers: ["테일즈런너", "테일즈러너", "테런", "테러"], imageUrl: "images/onlinegame/talesrunner.png" },
-        { answers: ["알투비트", "알투", "알비", "알빗"], imageUrl: "images/onlinegame/r2beat.png" },
-        { answers: ["천하제일상 거상", "거상"], imageUrl: "images/onlinegame/gusang.png" },
-        { answers: ["로스트아크", "로아"], imageUrl: "images/onlinegame/rostark.png" },
-        { answers: ["아이온"], imageUrl: "images/onlinegame/aion.png" },
-        { answers: ["월드 오브 워크래프트", "와우", "WOW", "월오워"], imageUrl: "images/onlinegame/wow.png" },
-        { answers: ["사이퍼즈", "싸이퍼즈", "사퍼", "싸퍼"], imageUrl: "images/onlinegame/cypers.png" },
-        { answers: ["원신"], imageUrl: "images/onlinegame/genshin.png" },
-        { answers: ["이터널 리턴"], imageUrl: "images/onlinegame/eternalreturn.png" },
-        { answers: ["발로란트", "발로"], imageUrl: "images/onlinegame/valo.png" },
-        { answers: ["로블록스", "로블"], imageUrl: "images/onlinegame/roblox.png" },
-        { answers: ["팰월드", "펠월드"], imageUrl: "images/onlinegame/palworld.png" }
+        { answers: ["오디세우스"], imageUrl: "images/oddipics/1.png" },
+         { answers: ["텔레마코스"], imageUrl: "images/oddipics/2.png" },
+          { answers: ["페넬로페"], imageUrl: "images/oddipics/3.png" },
+           { answers: ["안티노오스"], imageUrl: "images/oddipics/4.png" },
+            { answers: ["에우마이오스"], imageUrl: "images/oddipics/5.png" },
+             { answers: ["시논"], imageUrl: "images/oddipics/6.png" },
+              { answers: ["아가멤논"], imageUrl: "images/oddipics/7.png" },
+               { answers: ["메넬라오스"], imageUrl: "images/oddipics/8.png" },
+                { answers: ["아테나"], imageUrl: "images/oddipics/9.png" },
+                 { answers: ["칼립소"], imageUrl: "images/oddipics/10.png" },
+                  { answers: ["키르케"], imageUrl: "images/oddipics/11.png" },
+                   { answers: ["테이레시아스"], imageUrl: "images/oddipics/12.png" },
+                    { answers: ["폴리페모스"], imageUrl: "images/oddipics/13.png" },
+                      { answers: ["아르고스"], imageUrl: "images/oddipics/15.png" },
+                       { answers: ["클리타임네스트라"], imageUrl: "images/oddipics/16.png" }
+    
     ], // 👈 쉼표(,) 추가
 
     // 연예인 이목구비 퀴즈 데이터
@@ -255,7 +248,7 @@ const quizDatabase = {
             imageUrl: "images/eyes/ssg1.png",         // 문제 2 
             resultImageUrl: "images/eyes/ssg2.png",   // 결과 2풀샷
             answers: ["신세경"]
-        },
+        }
         
     ]
 

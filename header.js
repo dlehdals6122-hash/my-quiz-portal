@@ -1,39 +1,27 @@
-// header.js (메인 페이지 전용 상단바 및 검색/메뉴 관리기)
+// header.js
 document.addEventListener("DOMContentLoaded", function() {
-    const isMainPage = window.location.pathname.endsWith("index.html") || window.location.pathname.endsWith("/") || window.location.pathname === "";
-    
-    if (isMainPage) {
-        const headerHTML = `
-            <header class="w-full max-w-4xl flex justify-between items-center py-4 px-4 sm:px-0 mb-4 shrink-0 mx-auto">
-                <!-- 왼쪽 홈 버튼 -->
-                <button onclick="location.href='index.html'" class="text-2xl sm:text-3xl hover:scale-110 transition-transform">
-                    🏠
-                </button>
-                
-                <!-- 가운데 검색창 -->
-                <div class="flex-1 max-w-md mx-4">
-                    <div class="relative flex items-center">
-                        <span class="absolute left-3 text-gray-400">🔍</span>
-                        <input type="text" id="searchInput" placeholder="태그나 게임 검색 (예: 만화, 국기)" 
-                               class="w-full py-2.5 pl-10 pr-4 bg-white/90 focus:bg-white rounded-full text-sm font-medium text-slate-800 shadow-md focus:outline-none focus:ring-2 focus:ring-white">
-                    </div>
-                </div>
+    // 1. 공통 헤더 HTML (모든 페이지 적용)
+    const headerHTML = `
+        <header class="w-full max-w-4xl flex justify-between items-center py-4 px-4 sm:px-0 mb-2 shrink-0 mx-auto">
+            <!-- 왼쪽 홈 로고 -->
+            <a href="index.html" class="flex items-center hover:opacity-90 transition-opacity">
+                <img src="images/branding/logo.png" alt="퀴즈팡 로고" class="h-8 sm:h-10 object-contain">
+            </a>
+            
+            <!-- 우측 메뉴 버튼 -->
+            <button onclick="toggleMenu()" class="text-white text-2xl sm:text-3xl font-bold p-1 hover:opacity-80 transition-opacity ml-auto">
+                ⋮
+            </button>
+        </header>
+    `;
 
-                <!-- 우측 메뉴 버튼 (점 3개) -->
-                <button onclick="toggleMenu()" class="text-white text-2xl sm:text-3xl font-bold p-1 hover:opacity-80 transition-opacity">
-                    ⋮
-                </button>
-            </header>
-        `;
-
-        const headerContainer = document.getElementById('header-container');
-        if (headerContainer) {
-            headerContainer.innerHTML = headerHTML;
-        }
+    const headerContainer = document.getElementById('header-container');
+    if (headerContainer) {
+        headerContainer.innerHTML = headerHTML;
     }
 
-    // 공통 메뉴 팝업 창 생성
-    if (!document.getElementById('menu-popup') && isMainPage) {
+    // 2. 공통 메뉴 팝업 창 생성 (모든 페이지 적용)
+    if (!document.getElementById('menu-popup')) {
         const popupHTML = `
             <div id="menu-popup" class="hidden fixed inset-0 bg-black/70 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
                 <div class="bg-white w-64 p-6 rounded-2xl shadow-2xl relative">
@@ -49,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.body.insertAdjacentHTML('beforeend', popupHTML);
     }
 
-    // ⬇️ [핵심] 상단바가 동적으로 만들어진 후 검색 기능을 연결하는 코드
+    // 3. 메인 페이지 전용 검색 기능 연결
     setTimeout(() => {
         const searchInput = document.getElementById('searchInput');
         const cards = document.querySelectorAll('.quiz-card');

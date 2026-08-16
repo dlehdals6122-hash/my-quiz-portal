@@ -5,26 +5,18 @@ let audioCtx = null;
 // 페이지가 열리자마자 준비창 단계에서부터 미리 프리로딩 실행
 window.addEventListener('DOMContentLoaded', preloadImages);
 
-// common.js 파일의 엔터키 처리 함수 수정
+// [엔터키 및 키보드 입력 처리 함수]
 function handleKeypress(event) {
+    if (event.isComposing || event.keyCode === 229) return; // 한글 입력 중복 방지
     if (event.key === 'Enter') {
-        event.preventDefault(); // ⬅️ 브라우저의 기본 엔터 동작(새로고침 등)을 완벽히 차단!
-        checkAnswer();
+        event.preventDefault(); // 새로고침 방지
+        if (!isAnswerSubmitted) {
+            checkAnswer();
+        } else {
+            moveToNext();
+        }
     }
 }
-
-// [엔터키 입력 시 새로고침 방지 및 정답 확인 실행]
-document.addEventListener('DOMContentLoaded', () => {
-    const answerInput = document.getElementById('answer-input');
-    if (answerInput) {
-        answerInput.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
-                event.preventDefault(); // ⬅️ 브라우저의 기본 동작(페이지 새로고침) 강제 차단
-                checkAnswer();          // ⬅️ 정답 확인 함수 실행
-            }
-        });
-    }
-});
 
 // [효과음 함수들]
 function playTickSound() {
@@ -186,6 +178,9 @@ function handleTimeOut() {
 }
 
 function checkAnswer() {
+    // ⬇️ [핵심 방어막] 이미 정답을 제출했다면 함수를 강제 종료! (점수 2배 버그 차단)
+    if (isAnswerSubmitted) return; 
+
     stopTimer();
     const inputElement = document.getElementById('answer-input');
     const userAnswer = inputElement.value.trim().replace(/\s+/g, ''); 
