@@ -109,8 +109,21 @@ function startTimer() {
 function stopTimer() { clearInterval(timerInterval); }
 
 function updateQuestionUI() {
+   const currentQuiz = gameQuizData[currentIndex];
+    
     document.getElementById('question-number').innerText = `문제 ${currentIndex + 1} / ${gameQuizData.length}`;
-    document.getElementById('quiz-image').src = gameQuizData[currentIndex].imageUrl;
+    
+    const quizImg = document.getElementById('quiz-image');
+    quizImg.src = currentQuiz.imageUrl;
+
+    // ⬇️ [핵심] 다음 문제로 갈 때 쪼개졌던 화면을 다시 한 장(w-full)으로 원상 복구!
+ const resultFullImg = document.getElementById('result-full-image');
+    if (resultFullImg) {
+        resultFullImg.classList.add('hidden'); // 우측 풀샷 다시 숨기기
+        // 다시 100% 꽉 채우는 화면(object-cover)으로 되돌립니다.
+       quizImg.classList.remove('w-1/2', 'object-contain');
+        quizImg.classList.add('w-full', 'object-cover');
+    }
     const inputArea = document.getElementById('input-area');
     const resultArea = document.getElementById('result-area');
     const inputElement = document.getElementById('answer-input');
@@ -162,7 +175,29 @@ function checkAnswer() {
 }
 
 function showResultUI(isCorrect, isTimeOut = false) {
-    const currentAnswers = gameQuizData[currentIndex].answers; 
+    const currentQuiz = gameQuizData[currentIndex]; 
+    const currentAnswers = currentQuiz.answers; 
+    
+   // ⬇️ [핵심] 정답 화면에서 이미지를 반반씩 나란히 보여주기
+    const quizImg = document.getElementById('quiz-image');
+    const resultFullImg = document.getElementById('result-full-image'); 
+    
+    if (quizImg && currentQuiz.resultImageUrl) {
+        if (resultFullImg) {
+            // eyes.html 인 경우 (이미지 분할)
+            resultFullImg.src = currentQuiz.resultImageUrl;
+            resultFullImg.classList.remove('hidden'); // 👈 [추가됨] 숨겨진 오른쪽 풀사진을 짠! 하고 나타나게 하는 핵심 코드입니다.
+            
+            // w-full과 object-cover(꽉 채우기)를 빼고, w-1/2와 object-contain(풀사진)을 넣습니다.
+            // 테두리선(border-r)을 빼고 절반 크기와 비율유지만 남깁니다.
+            quizImg.classList.remove('w-full', 'object-cover');       
+            quizImg.classList.add('w-1/2', 'object-contain');
+        } else {
+            // 다른 게임의 경우 (기존처럼 하나만 통째로 바꿈)
+            quizImg.src = currentQuiz.resultImageUrl;
+        }
+    }
+
     document.getElementById('input-area').classList.remove('flex');
     document.getElementById('input-area').classList.add('hidden');
     document.getElementById('result-area').classList.remove('hidden');
@@ -218,16 +253,30 @@ function shareKakao() {
     }
 
     const shareText = `🌍 ${QUIZ_TITLE}에서 20점 만점에 ${score}점을 받았어요! 당신도 도전해보시겠어요?`;
-    const shareUrl = window.location.href;
+    // ⬇️ [수정됨] 현재 주소 대신 무조건 index.html로 이동하도록 설정
+    const currentPath = window.location.href;
+    const shareUrl = currentPath.substring(0, currentPath.lastIndexOf("/")) + "/index.html";
 
-    // 카카오톡 텍스트 공유 띄우기
+    // ⬇️ [수정됨] 텍스트 영역을 눌러도 링크가 열리도록 'feed' 타입으로 변경
     Kakao.Share.sendDefault({
-        objectType: 'text',
-        text: shareText,
-        link: {
-            mobileWebUrl: shareUrl,
-            webUrl: shareUrl,
+        objectType: 'feed',
+        content: {
+            title: shareText,
+            description: '당신도 지금 도전해보세요!',
+            imageUrl: 'https://cdn-icons-png.flaticon.com/512/3407/3407024.png', // 카톡 공유 카드에 뜰 아이콘
+            link: {
+                mobileWebUrl: shareUrl,
+                webUrl: shareUrl,
+            },
         },
-        buttonTitle: '퀴즈 풀러 가기',
+        buttons: [
+            {
+                title: '퀴즈 풀러 가기',
+                link: {
+                    mobileWebUrl: shareUrl,
+                    webUrl: shareUrl,
+                },
+            },
+        ],
     });
 }
