@@ -268,23 +268,21 @@ function resetQuiz() {
 
 // [카카오톡 공유 기능]
 function shareKakao() {
-    // 카카오 SDK가 초기화되지 않았다면 초기화 (본인의 자바스크립트 키 입력 필요!)
     if (!Kakao.isInitialized()) {
         Kakao.init('37145e2d78219a5d4a51baaf7ef0030b'); 
     }
 
-    const shareText = `🌍 ${QUIZ_TITLE}에서 20점 만점에 ${score}점을 받았어요! 당신도 도전해보시겠어요?`;
-    // ⬇️ [수정됨] 현재 주소 대신 무조건 index.html로 이동하도록 설정
-    const currentPath = window.location.href;
-    const shareUrl = currentPath.substring(0, currentPath.lastIndexOf("/")) + "/index.html";
+    const shareText = `${QUIZ_TITLE}에서 20점 만점에 ${score}점을 받았어요!`;
+    
+    // ⬇️ origin(https://... .pages.dev)을 활용하여 항상 완벽한 절대 경로 주소를 만듭니다.
+    const shareUrl = window.location.origin + "/index.html";
 
-    // ⬇️ [수정됨] 텍스트 영역을 눌러도 링크가 열리도록 'feed' 타입으로 변경
     Kakao.Share.sendDefault({
         objectType: 'feed',
         content: {
             title: shareText,
             description: '당신도 지금 도전해보세요!',
-            imageUrl: 'https://cdn-icons-png.flaticon.com/512/3407/3407024.png', // 카톡 공유 카드에 뜰 아이콘
+            imageUrl: 'https://cdn-icons-png.flaticon.com/512/3407/3407024.png',
             link: {
                 mobileWebUrl: shareUrl,
                 webUrl: shareUrl,
