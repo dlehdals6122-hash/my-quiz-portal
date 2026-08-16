@@ -32,11 +32,13 @@
             </div>
             <div class="p-5 sm:p-6">
                 <div class="text-center mb-4 sm:mb-5">
-                    <!-- 아이콘을 게임패드에서 사진/카메라 테마로 변경 -->
-                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-indigo-50 rounded-full flex items-center justify-center text-4xl sm:text-5xl mx-auto mb-2 sm:mb-3 shadow-inner">📸</div>
-                    <h2 class="text-lg sm:text-xl font-extrabold text-slate-800">영화 '오디세이' 인물 퀴즈</h2>
-                    <p class="text-slate-500 text-xs sm:text-sm mt-1">총 20문제가 출제됩니다.</p>
-                </div>
+    <!-- ⬇️ 텍스트 이모지 대신 <img> 태그를 넣고 overflow-hidden으로 둥글게 잘라냅니다. -->
+    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3 shadow-inner overflow-hidden">
+        <img src="images/oddipics/oddithumb.png" alt="대표 아이콘" class="w-full h-full object-cover">
+    </div>
+    <h2 class="text-lg sm:text-xl font-extrabold text-slate-800">영화 '오디세이' 인물 퀴즈</h2>
+    <p class="text-slate-500 text-xs sm:text-sm mt-1">총 20문제가 출제됩니다.</p>
+</div>
 
                 <label class="bg-slate-50 border border-slate-200 rounded-xl p-3 sm:p-4 mb-5 flex items-center justify-between cursor-pointer select-none">
                     <div class="flex items-center space-x-2">
@@ -147,7 +149,7 @@
         const CURRENT_QUIZ_DATA = quizDatabase.oddipics;
         
         // 2. 카카오톡 공유 시 표시될 게임 제목입니다.
-        const QUIZ_TITLE = "Oddipic 퀴즈";
+        const QUIZ_TITLE = "영화 '오디세이' 인물 퀴즈";
     </script>
 
     <!-- ⬇️ 공통 퀴즈 엔진 -->

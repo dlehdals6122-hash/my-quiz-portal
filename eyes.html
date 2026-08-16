@@ -32,11 +32,13 @@
             </div>
             <div class="p-5 sm:p-6">
                 <div class="text-center mb-4 sm:mb-5">
-                    <!-- 아이콘을 지구본에서 게임패드로 변경 -->
-                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-indigo-50 rounded-full flex items-center justify-center text-4xl sm:text-5xl mx-auto mb-2 sm:mb-3 shadow-inner">🎮</div>
-                    <h2 class="text-lg sm:text-xl font-extrabold text-slate-800">연예인 이목구비 퀴즈</h2>
-                    <p class="text-slate-500 text-xs sm:text-sm mt-1">총 20문제가 출제됩니다.</p>
-                </div>
+    <!-- ⬇️ 텍스트 이모지 대신 <img> 태그를 넣고 overflow-hidden으로 둥글게 잘라냅니다. -->
+    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3 shadow-inner overflow-hidden">
+        <img src="images/eyes/jyy2.png" alt="대표 아이콘" class="w-full h-full object-cover">
+    </div>
+    <h2 class="text-lg sm:text-xl font-extrabold text-slate-800">이목구비 퀴즈</h2>
+    <p class="text-slate-500 text-xs sm:text-sm mt-1">총 20문제가 출제됩니다.<br>정답은 실명 또는 활동명을 성 포함 적어주세요.</p>
+</div>
 
                 <label class="bg-slate-50 border border-slate-200 rounded-xl p-3 sm:p-4 mb-5 flex items-center justify-between cursor-pointer select-none">
                     <div class="flex items-center space-x-2">
@@ -92,20 +94,21 @@
     </div>
 </div>
             
-            <!-- 하단 입력창 및 버튼 영역 -->
-            <div class="w-full shrink-0 flex flex-col items-center justify-end pb-2 sm:pb-4 min-h-[80px]">
-                <div id="input-area" class="w-full flex space-x-2 sm:space-x-3 items-center">
-                    <input type="text" id="answer-input" placeholder="정답을 입력하세요" onkeydown="handleKeypress(event)"
-                            class="flex-1 min-w-0 h-12 sm:h-14 px-3 sm:px-4 bg-white rounded-xl text-center text-base sm:text-lg font-black text-slate-800 focus:outline-none shadow-lg focus:ring-4 focus:ring-blue-300">
-                    <button onclick="checkAnswer()" class="bg-[#2C4682] hover:bg-violet-500 text-white font-bold h-12 w-12 sm:h-14 sm:w-14 rounded-xl transition-colors shadow-lg text-xl sm:text-2xl flex items-center justify-center shrink-0">
-                        &gt;
-                    </button>
-                </div>
+           <!-- 하단 입력창 및 버튼 영역 -->
+<div class="w-full shrink-0 flex flex-col items-center justify-end pb-2 sm:pb-4 min-h-[80px]">
+    <div id="input-area" class="w-full flex space-x-2 sm:space-x-3 items-center">
+        <!-- ⬇️ [수정] onkeydown 제거 및 autocomplete="off" 추가 -->
+        <input type="text" id="answer-input" placeholder="정답을 입력하세요" autocomplete="off"
+                class="flex-1 min-w-0 h-12 sm:h-14 px-3 sm:px-4 bg-white rounded-xl text-center text-base sm:text-lg font-black text-slate-800 focus:outline-none shadow-lg focus:ring-4 focus:ring-blue-300">
+        <button type="button" onclick="checkAnswer()" class="bg-[#2C4682] hover:bg-violet-500 text-white font-bold h-12 w-12 sm:h-14 sm:w-14 rounded-xl transition-colors shadow-lg text-xl sm:text-2xl flex items-center justify-center shrink-0">
+            &gt;
+        </button>
+    </div>
                 
                 <div id="result-area" class="w-full hidden flex-col items-center justify-center space-y-2 sm:space-y-4">
                     <div id="result-status" class="text-lg sm:text-xl font-bold flex items-center justify-center space-x-2"></div>
                     <div id="correct-answer-text" class="text-xl sm:text-3xl font-black text-white drop-shadow-md tracking-wider text-center break-keep w-full overflow-hidden whitespace-normal px-2"></div>
-                       <button id="next-button" onclick="moveToNext()" class="bg-[#2C4682] hover:bg-violet-500 text-white font-bold h-12 sm:h-14 w-full rounded-xl transition-colors shadow-lg text-lg sm:text-xl flex justify-center items-center mt-2 focus:ring-4 ring-violet-300 ring-opacity-50 shrink-0">
+                       <button type="button" id="next-button" onclick="moveToNext()" class="bg-[#2C4682] hover:bg-violet-500 text-white font-bold h-12 sm:h-14 w-full rounded-xl transition-colors shadow-lg text-lg sm:text-xl flex justify-center items-center mt-2 focus:ring-4 ring-violet-300 ring-opacity-50 shrink-0">
     다음 문제로 &gt;
 </button>
                 </div>

@@ -2,6 +2,27 @@
 
 let audioCtx = null;
 
+// common.js 파일의 엔터키 처리 함수 수정
+function handleKeypress(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // ⬅️ 브라우저의 기본 엔터 동작(새로고침 등)을 완벽히 차단!
+        checkAnswer();
+    }
+}
+
+// [엔터키 입력 시 새로고침 방지 및 정답 확인 실행]
+document.addEventListener('DOMContentLoaded', () => {
+    const answerInput = document.getElementById('answer-input');
+    if (answerInput) {
+        answerInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // ⬅️ 브라우저의 기본 동작(페이지 새로고침) 강제 차단
+                checkAnswer();          // ⬅️ 정답 확인 함수 실행
+            }
+        });
+    }
+});
+
 // [효과음 함수들]
 function playTickSound() {
     if (!audioCtx) return;
