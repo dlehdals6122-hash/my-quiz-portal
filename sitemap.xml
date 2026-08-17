@@ -1,15 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- 1. 메인 페이지 (가장 중요) -->
   <url>
     <loc>https://quizpang.net/</loc>
     <priority>1.0</priority>
   </url>
+
+  <!-- 2. 주요 퀴즈 게임 페이지 (중요도 0.8) -->
   <url>
     <loc>https://quizpang.net/flag_quiz.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://quizpang.net/oddipic.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://quizpang.net/eyes.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://quizpang.net/onlinegame.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 3. 보조 안내 페이지 (중요도 0.5) -->
+  <url>
     <loc>https://quizpang.net/notice.html</loc>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://quizpang.net/contact.html</loc>
+    <priority>0.5</priority>
+  </url>
+
 </urlset>
