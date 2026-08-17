@@ -2,8 +2,30 @@
 
 let audioCtx = null;
 
-// 페이지가 열리자마자 준비창 단계에서부터 미리 프리로딩 실행
-window.addEventListener('DOMContentLoaded', preloadImages);
+// [수정됨] 페이지가 열리자마자 프리로딩과 함께 푸터(Copyright) 자동 생성 실행
+window.addEventListener('DOMContentLoaded', () => {
+    preloadImages();
+    createFooter();
+});
+
+// ⬇️ [새로 추가된 기능] 모든 페이지 하단에 공통 푸터를 만들어주는 함수
+function createFooter() {
+    // Tailwind CSS를 활용해 깔끔한 하단 카피라이트 영역 디자인
+    const footerHTML = `
+        <footer class="w-full py-6 mt-auto text-center text-xs sm:text-sm text-gray-400/80">
+            <div>
+                <p class="mb-1">© 2026 QuizPang. All rights reserved.</p>
+                <p>문의: contact@quizpang.com</p>
+            </div>
+        </footer>
+    `;
+    
+    // body 맨 마지막에 푸터 HTML 삽입
+    document.body.insertAdjacentHTML("beforeend", footerHTML);
+    
+    // 컨텐츠가 적어도 푸터가 항상 바닥에 붙어있도록 body에 flex 속성 추가
+    document.body.classList.add('min-h-screen', 'flex', 'flex-col');
+}
 
 // [엔터키 및 키보드 입력 처리 함수]
 function handleKeypress(event) {
@@ -141,11 +163,11 @@ function updateQuestionUI() {
     quizImg.src = currentQuiz.imageUrl;
 
     // ⬇️ [핵심] 다음 문제로 갈 때 쪼개졌던 화면을 다시 한 장(w-full)으로 원상 복구!
- const resultFullImg = document.getElementById('result-full-image');
+    const resultFullImg = document.getElementById('result-full-image');
     if (resultFullImg) {
         resultFullImg.classList.add('hidden'); // 우측 풀샷 다시 숨기기
         // 다시 100% 꽉 채우는 화면(object-cover)으로 되돌립니다.
-       quizImg.classList.remove('w-1/2', 'object-contain');
+        quizImg.classList.remove('w-1/2', 'object-contain');
         quizImg.classList.add('w-full', 'object-cover');
     }
     const inputArea = document.getElementById('input-area');
@@ -161,14 +183,6 @@ function updateQuestionUI() {
     
     if (isTimerEnabled) { timerBadge.classList.remove('hidden'); startTimer(); } 
     else { timerBadge.classList.add('hidden'); }
-}
-
-function handleKeypress(event) {
-    if (event.isComposing || event.keyCode === 229) return;
-    if (event.key === 'Enter') {
-        event.preventDefault(); 
-        if (!isAnswerSubmitted) checkAnswer(); else moveToNext();
-    }
 }
 
 function handleTimeOut() {
@@ -288,7 +302,7 @@ function shareKakao() {
         content: {
             title: shareText,
             description: '당신도 지금 도전해보세요!',
-            imageUrl: 'https://cdn-icons-png.flaticon.com/512/3407/3407024.png',
+            imageUrl: 'images/oddipics/oddithumb.png',
             link: {
                 mobileWebUrl: shareUrl,
                 webUrl: shareUrl,

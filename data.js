@@ -250,7 +250,93 @@ const quizDatabase = {
             answers: ["신세경"]
         }
         
-    ]
+    ],
+
+
+    sinjo: [
+        { 
+            questionText: "중꺾마", 
+            answers: ["중요한 건 꺾이지 않는 마음"] 
+        },
+        { 
+            questionText: "분좋카", 
+            answers: ["분위기 좋은 카페", "분위기 좋은 까페"] 
+        },
+        { 
+            questionText: "오운완", 
+            answers: ["오늘 운동 완료"] 
+        },
+        { 
+            questionText: "할말하않", 
+            answers: ["할 말은 많지만 하지 않겠다", "할 말은 많지만 하지 않겠음", "할 말은 많지만 하지않음", "할 말은 많지만 하지 않는다"] 
+        },
+        { 
+            questionText: "알잘딱깔센", 
+            answers: ["알아서 잘 딱 깔끔하고 센스있게"] 
+        },
+        { 
+            questionText: "반모", 
+            answers: ["반말 모드"] 
+        },
+        { 
+            questionText: "핑프", 
+            answers: ["핑거 프린세스"] 
+        },
+        { 
+            questionText: "완내스", 
+            answers: ["완전 내 스타일", "완전 내 스탈"] 
+        },
+        { 
+            questionText: "팬아저", 
+            answers: ["팬 아니어도 저장", "팬 아니여도 저장"] 
+        },
+        { 
+            questionText: "오저치고", 
+            answers: ["오늘 저녁에 치킨 고?", "오늘 저녁에 치킨 고", "오늘 저녁 치킨 고?", "오늘 저녁 치킨 고"] 
+        },
+        { 
+            questionText: "맨자맨먹", 
+            answers: ["맨날 자고 맨날 먹는다", "맨날 자고 맨날 먹음"] 
+        },
+        { 
+            questionText: "#G", 
+            answers: ["시아버지"] 
+        },
+        { 
+            questionText: "이선좌", 
+            answers: ["이미 선택된 좌석입니다", "이미 선택한 좌석입니다", "이미 선택된 좌석", "이미 선택한 좌석"] 
+        },
+        { 
+            questionText: "갑통알", 
+            answers: ["갑자기 통장을 보니 알바 해야겠다", "갑자기 통장을 보니 알바 해야겠음"] 
+        },
+        { 
+            questionText: "불소", 
+            answers: ["불타는 소통"] 
+        },
+        { 
+            questionText: "hmh", 
+            answers: ["하면 해", "하면 해라"] 
+        },
+        { 
+            questionText: "오다망", 
+            answers: ["오늘 다이어트 망했다", "오늘 다이어트 망함", "오늘도 다이어트 망했다", "오늘도 다이어트 망함"] 
+        },
+        { 
+            questionText: "캘박", 
+            answers: ["캘린더 박제", "캘린더에 박제"] 
+        },
+        { 
+            questionText: "안남미", 
+            answers: ["안 꾸몄는데 남들을 미치게 만드는 미", "안 꾸몄는데 남들 미치게 만드는 미", "안 꾸며도 남들을 미치게 만드는 미", "안 꾸며도 남들 미치게 만드는 미"] 
+        },
+        { 
+            questionText: "막나귀", 
+            answers: ["막상 나가려니 귀찮다", "막상 나가려니 귀찮음"] 
+        },
+
+        // ... (문제를 계속 추가해 주세요)
+    ],
 
 
 
